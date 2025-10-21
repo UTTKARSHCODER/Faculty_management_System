@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!--<script src = "/static/script.js"></script>-->
+<style>
+    .form-check{
+        padding-left: 1.0em;
+    }
+    .section {
+        margin-bottom: 30px;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 12px;
+        border-left: 4px solid #667eea;
+    }
+
+    .section-title {
+        font-size: 1.3em;
+        color: #333;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+    .form-row {
+        margin-bottom: 30px;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 12px;
+        border-left: 4px solid #667eea;
+    }
+    .badge {
+        display: inline-block;
+        background: #667eea;
+        color: white;
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 0.85em;
+        margin-left: 10px;
+    }
+    .sub-form-field{
+        display: flex;
+        margin: 10px
+    }
+    .sub-form-input{
+        margin-left: 0.5rem;
+        width: 25%
+    }
+    .col-form-label{
+        font-weight: bold;
+    }
+</style>
+<div class="col">
+    <div class="conatiner">
+    {% if form_number == 1 %}
+
+    <div class="row form-row m-3">
+        <div class = "section-title">Step1: Verify Basic Details(read-only)<button class = "btn text-white ms-3" onclick="window.location.href = '{% url 'home' %}';" style = "background-color: rgb(79 70 229);"><i class = "fa-solid fa-pen me-2"></i>Edit Profie</button></div><!--Add Edit Profile Page-->
+        <div class="col mt-4">
+            <span>
+                <i class="fa-solid fa-envelope"></i>
+                <label for="email" class="form-label"><b>Email</b><span class="ms-1" style="color: red;">*</span></label>
+            </span>
+            <input type="email" class="form-control custom-back" id="email"
+                value="{{value.email}}" placeholder="Enter your personal Email Adddress"
+                name="email" readonly>
+        </div>
+        <div class="col mt-4" id="emp_id_verify">
+            <span>
+                <i class="fa-solid fa-user"></i>
+                <label for="emp_id" class="form-label"><b>Employee ID</b><span class="ms-1" style="color: red;">*</span></label>
+            </span>
+            <input type="text" class="form-control custom-back" id="emp_id"
+                value="{{value.emp_id}}" placeholder="Enter your Employee ID"
+                name="emp_id" maxlength="5" oninput="validateForm('con_number')" readonly>
+        </div>
+        <div class="col mt-4" id="depart">
+            <span>
+                <i class="fa-solid fa-building"></i>
+                <label for="branchSelect" class="form-label"><b>Department</b><span class="ms-1" style="color: red;">*</span></label>
+            </span>
+            <input value = "{{value.department}}" class="form-control custom-back" id="branchSelect" readonly>
+        </div>
+        <div class="col mt-4" id="name_check">
+            <span>
+                <i class="fa-solid fa-user"></i>
+                <label for="name" class="form-label"><b>Name</b><span class="ms-1"
+                        style="color: red;">*</span></label>
+            </span>
+            <input type="text" class="form-control custom-back" id="name"
+                value="{{value.name}}" placeholder="Enter your Name" name="name"
+                oninput="validateForm('name_check')" readonly>
+        </div>
+    </div>
+    <div class="row form-row m-3">
+         <div class="d-flex column-gap-4 mt-4" id = "checkboxGroup">
+            <span>
+                <label for="eop" class="form-label"><b>Event/Program Category</b><span class="ms-1" style="color: red;">*</span> :-</label>
+            </span>
+            <div class="form-check" id = "eop">
+                <input type="checkbox" class="form-check-input" id="radio7" name="optradio" value="FDP">
+                <label class="form-check-label" for="radio7"><b>FDP</b></label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="radio8" name="optradio" value="Workshop">
+                <label class="form-check-label" for="radio8"><b>Workshop</b></label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="radio9" name="optradio" value="Conference">
+                <label class="form-check-label" for="radio9"><b>Conference</b></label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="radio10" name="optradio" value="STTP">
+                <label class="form-check-label" for="radio10"><b>STTP</b></label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="radio11" name="optradio" value="Seminar">
+                <label class="form-check-label" for="radio11"><b>Seminar</b></label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="radio12" name="optradio" value="Webinar">
+                <label class="form-check-label" for="radio12"><b>Webinar</b></label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="radio13" name="optradio" value="Lecture Series">
+                <label class="form-check-label" for="radio13"><b>Lecture Series</b></label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="radio14" name="optradio" value="Symposium">
+                <label class="form-check-label" for="radio14"><b>Symposium</b></label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="radio15" name="optradio" value="Other">
+                <label class="form-check-label" for="radio15"><b>Other</b></label>
+            </div>
+         </div>
+    </div>
+    <!-- Step 2: Dynamic Input Fields -->
+    <div class="section m-3">
+        <label class="section-title">
+            Step 2: Enter Quantities
+            <span class="badge" id="inputCount">0 fields</span>
+        </label>
+        <div class="input-fields" id="inputFields">
+            <div class="empty-state">Select checkboxes above to generate input fields</div>
+        </div>
+    </div>
+
+    <!-- Step 3: Sub-forms -->
+    <div class="section m-3">
+        <div class="section-title">
+            Step 3: Generated Sub-forms
+            <span class="badge" id="subformCount">0 forms</span>
+        </div>
+        <div class="sub-forms-container" id="subFormsContainer">
+            <div class="empty-state">Enter quantities above to generate sub-forms</div>
+        </div>
+    </div>
+    {% endif %}
+    </div>
+</div>
+<script src = "/static/script.js"></script>
+
+{% endblock %}
