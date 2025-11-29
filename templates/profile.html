@@ -25,8 +25,8 @@
                 </div>
                 <div class="card-body1-custom ms-5 mb-2">
                     <h1><strong>{{data.name}}</strong></h1>
-                    <h5 style = "color: gray; font-size: 18px;">{{data.department}}, Designation</h5>
-                    <button class = "btn text-white mt-3" style = "background-color: rgb(79 70 229);"><i class = "fa-solid fa-pen me-2"></i>Edit Profie</button>
+                    <h5 style = "color: gray; font-size: 18px;">{{department}}, {{designation}}</h5>
+                    <button class = "btn text-white mt-3" style = "background-color: rgb(79 70 229);" onclick="window.location.href='{% url 'editProfile' %}';"><i class = "fa-solid fa-pen me-2"></i>Edit Profie</button>
                 </div>
             </div>
             <div class="card-body">

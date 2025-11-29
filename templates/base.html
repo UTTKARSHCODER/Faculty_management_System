@@ -4,6 +4,7 @@
 {% url 'student-directory' as student_directory %}
 {% url 'about' as about %}
 {% url 'fdp' as fdp %}
+{% url 'progress' as progress %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -85,6 +86,7 @@
                         <a href="/allocated_batches" style = "text-decoration: none;"><li class="nav-item text-white {% if request.path == allocated_batches %} active {% endif %}" id = "profile">Allocated Batches</li></a>
                         <a href="/student_directory" style = "text-decoration: none;"><li class="nav-item text-white {% if request.path == student_directory %} active {% endif %}" id = "faculty_report">Student Directory</li></a>
                         <a href="/fdp" style = "text-decoration: none;"><li class="nav-item text-white {% if request.path == fdp or 'all_forms' in request.path %} active {% endif %}" id = "faculty_development">FDP Forms</li></a>
+                        <a href="/progress" style = "text-decoration: none;"><li class="nav-item text-white {% if request.path == progress %} active {% endif %}" id = "progress">Progress</li></a>
                         {% endif %}
                         <a href="/about" style = "text-decoration: none;"><li class="nav-item text-white {% if request.path == about %} active {% endif %}" id = "about_us">About Us</li></a>
                     </ul>

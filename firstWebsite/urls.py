@@ -15,5 +15,7 @@ urlpatterns = [
     path('fdp', views.fdp, name='fdp'),
     path('all_forms/<int:pk>', views.all_forms, name='all_forms'),
     path('save_all_forms/<int:pk>',views.save_all_forms, name="save_all_forms"),
-    path('success',views.successfulsubmission, name="success")
+    path('success',views.successfulsubmission, name="success"),
+    path('progress',views.progress,name="progress"),
+    path('edit_profile',views.edit_profile,name="editProfile")
 ]
